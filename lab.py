@@ -215,4 +215,13 @@ plt.suptitle("Demodulación", fontsize=16)
 plt.tight_layout()
 plt.subplots_adjust(top=0.88)
 
+
+
+demoduladaAM = np.asarray(demoduladaAM, dtype=np.int16)
+
+print("Escribiendo audios...")
+wavfile.write("demodulad100%.wav", fs, demoduladaAM)
+print("Audio .wav escrito exitosamente.")
+
+
 plt.show()
