@@ -123,7 +123,7 @@ y2 = interpolada(Tiempo2)
 
 #largo_AM = len(signal_interp_AM)
 tiempo_AM = np.linspace(0, len(Tiempo), 1)
-portadora = np.cos(2*np.pi*100*tiempo_AM)
+portadora = np.cos(2*np.pi*3*fs*tiempo_AM)
 
 
 
