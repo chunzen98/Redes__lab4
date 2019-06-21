@@ -31,7 +31,7 @@ def modulacionAM(signal,frecuencia,interpolada,coeficiente):
     senalModulada =  interpolada*senalPortadora*coeficiente
 
 
-    plt.figure("Mod. AM")
+    plt.figure("Mod. AM " + str(float(coeficiente) * 100) + "%")
     #Graficos de senales
     plt.subplot(311)
     plt.plot(tiempo,signal,"c")
@@ -53,7 +53,7 @@ def modulacionAM(signal,frecuencia,interpolada,coeficiente):
     plt.ylabel("Modulada")
     plt.title("Señal Modulada en el tiempo")
 
-    plt.suptitle("Modulacion AM", fontsize=16)
+    plt.suptitle("Modulacion AM " + str(coeficiente * 100) + "%", fontsize=16)
     plt.tight_layout()
     plt.subplots_adjust(top=0.88)
 
@@ -69,7 +69,7 @@ def modulacionFM(signal,frecuencia,interpolada,coeficiente):
     senalModulada = np.cos(2*np.pi*fsFM*tiempoModulada + (np.cumsum(interpolada)/frecuencia)*coeficiente)
 
 
-    plt.figure("Mod. FM")
+    plt.figure("Mod. FM " + str(float(coeficiente) * 100) + "%")
     plt.subplot(311)
     plt.plot(tiempo,signal,"c")
     plt.xlabel("Tiempo(s)")
@@ -90,7 +90,7 @@ def modulacionFM(signal,frecuencia,interpolada,coeficiente):
     plt.ylabel("Modulada")
     plt.title("Señal Modulada en el tiempo fm")
     
-    plt.suptitle("Modulacion FM", fontsize=16)
+    plt.suptitle("Modulacion FM " + str(coeficiente * 100) + "%", fontsize=16)
     plt.tight_layout()
     plt.subplots_adjust(top=0.88)
 
@@ -174,9 +174,19 @@ t = largo / fs # Tiempo de la senal
 
 
 #2)
+
 interpolada = interpolacionAM(audio,fs)
+
+#100%
 moduladaAM, fsAM = modulacionAM(audio,fs,interpolada,1)
 moduladaFM, fsFM = modulacionFM(audio,fs,interpolada,1)
+#15%
+moduladaAM15, fsAM15 = modulacionAM(audio,fs,interpolada,0.15)
+moduladaFM15, fsFM15 = modulacionFM(audio,fs,interpolada,0.15)
+#125%
+moduladaAM125, fsAM125 = modulacionAM(audio,fs,interpolada,1.25)
+moduladaFM125, fsFM125 = modulacionFM(audio,fs,interpolada,1.25)
+
 yFourier, yAMFourier, yFMFourier = transFourier(audio, moduladaAM, moduladaFM, fs, fsAM, fsFM)
 
 
