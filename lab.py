@@ -193,11 +193,13 @@ yFourier, yAMFourier, yFMFourier = transFourier(audio, moduladaAM, moduladaFM, f
 #3)
 # Demodulacion AM
 demoduladaAM = demodulacionAM(moduladaAM, fs, interpolada)
+demoduladaAM15 = demodulacionAM(moduladaAM15, fs, interpolada)
+demoduladaAM125 = demodulacionAM(moduladaAM125, fs, interpolada)
 
 # Grafico demodulacion
 tiempo = np.linspace(0,len(audio)/fs, num=len(audio))
 
-plt.figure("Demodulacion")
+plt.figure("Demodulacion 100%")
 
 plt.subplot(211)
 plt.plot(tiempo, audio,"c")
@@ -211,17 +213,61 @@ plt.xlabel("Tiempo(s)")
 plt.ylabel("Amplitud [dB]")
 plt.title("Señal Demodulada")    
     
-plt.suptitle("Demodulación", fontsize=16)
+plt.suptitle("Demodulación 100%", fontsize=16)
+plt.tight_layout()
+plt.subplots_adjust(top=0.88)
+
+
+plt.figure("Demodulacion 15%")
+
+plt.subplot(211)
+plt.plot(tiempo, audio,"c")
+plt.xlabel("Tiempo(s)")
+plt.ylabel("Amplitud [dB]")
+plt.title("Señal Original en el tiempo")
+
+plt.subplot(212)
+plt.plot(tiempo, demoduladaAM15,"r")
+plt.xlabel("Tiempo(s)")
+plt.ylabel("Amplitud [dB]")
+plt.title("Señal Demodulada")    
+    
+plt.suptitle("Demodulación 15%", fontsize=16)
+plt.tight_layout()
+plt.subplots_adjust(top=0.88)
+
+
+plt.figure("Demodulacion 125%")
+
+plt.subplot(211)
+plt.plot(tiempo, audio,"c")
+plt.xlabel("Tiempo(s)")
+plt.ylabel("Amplitud [dB]")
+plt.title("Señal Original en el tiempo")
+
+plt.subplot(212)
+plt.plot(tiempo, demoduladaAM125,"r")
+plt.xlabel("Tiempo(s)")
+plt.ylabel("Amplitud [dB]")
+plt.title("Señal Demodulada")    
+    
+plt.suptitle("Demodulación 125%", fontsize=16)
 plt.tight_layout()
 plt.subplots_adjust(top=0.88)
 
 
 
 demoduladaAM = np.asarray(demoduladaAM, dtype=np.int16)
+demoduladaAM15 = np.asarray(demoduladaAM15, dtype=np.int16)
+demoduladaAM125 = np.asarray(demoduladaAM125, dtype=np.int16)
+
+
 
 print("Escribiendo audios...")
 wavfile.write("demodulad100%.wav", fs, demoduladaAM)
+wavfile.write("demodulad15%.wav", fs, demoduladaAM15)
+wavfile.write("demodulad125%.wav", fs, demoduladaAM125)
 print("Audio .wav escrito exitosamente.")
 
 
-plt.show()
+##plt.show()
