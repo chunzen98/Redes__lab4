@@ -59,7 +59,8 @@ def modulacionAM(signal,frecuencia,interpolada,coeficiente):
 
     return senalModulada, fsAM
 
-
+#Recibe la senal, su frecuencia, la interpolada y el coeficiente de modulacion.
+#Modula (FM) la senal segun el coeficiente dado. Retorna la senal modulada y la frecuencia usada
 def modulacionFM(signal,frecuencia,interpolada,coeficiente):
     largoInterpolada = len(interpolada)
     fsFM = frecuencia * 3
@@ -96,7 +97,9 @@ def modulacionFM(signal,frecuencia,interpolada,coeficiente):
 
     return senalModulada, fsFM
 
-
+#Recibe la senal, la senal modulada en FM y AM, las frecuencias usadas en las modulaciones.
+#Obtiene las transformadas de Fourier de las senales entregadas y las grafica.
+#Retorna las transformadas de las senales.
 def transFourier(audio, AM, FM, fs, fsAM, fsFM):
 
     largo = len(audio)
@@ -149,7 +152,9 @@ def transFourier(audio, AM, FM, fs, fsAM, fsFM):
         
     return yFourier, yAMFourier, yFMFourier
 
-
+#Recibe la senal modulada en AM, la frecuencia y la interpolada.
+#Demodula la senal AM obteniendo la original.
+#retorna la senal demodulada.
 def demodulacionAM(signal,frecuencia,interpolada):
     #Obtencion de senales portadora y modulada
     largoInterpolada = len(interpolada)
